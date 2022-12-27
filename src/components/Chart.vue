@@ -22,6 +22,7 @@ let experimentSopList = ref([])
 let message = ref('yyy')
 let width = ref()
 let height = ref()
+let grapthData = ref([])
 
 onMounted(() => {
   // 设置数据// 获取数据
@@ -47,6 +48,8 @@ const handleMessage = (event) => {
   var params = JSON.parse(data)
   width.value = params.width
   height.value = params.height
+  grapthData.value = params.data
+  initChart()
 }
 
 onUnmounted(() => {
@@ -74,7 +77,7 @@ const initChart = () => {
     },
     series: [
       {
-        data: [120, 200, 150, 80, 70, 110, 130],
+        data: grapthData.value,
         type: 'bar',
       },
     ],
